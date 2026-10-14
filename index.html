@@ -27,12 +27,11 @@
     <p id="msg" class="small" aria-live="polite">버튼을 누르면 유튜브 영상으로 이동합니다.</p>
   </main></div>
   <script>
-    function recordVideoClick() {
-      // 유튜브는 즉시 새 탭으로 열리고, 기존 페이지에서 클릭 기록을 전송합니다.
-      google.script.run.withFailureHandler(function() {
-        document.getElementById('msg').textContent = '클릭 기록 저장에 실패했습니다.';
-      }).recordClick();
-    }
+function recordVideoClick() {
+  if (typeof window.umami !== 'undefined') {
+    window.umami.track('video_click');
+  }
+}   
   </script>
 </body>
 </html>
